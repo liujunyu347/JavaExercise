@@ -16,6 +16,8 @@ public class BankAccount {
 //        a1.withdraw(10000);
 //        a1.withdraw(500);
         System.out.println("exit: exit the program");
+        System.out.println("balance: show name and balance");
+        System.out.println("show: show account information");
         System.out.println("deposit ###: deposit the funds");
         System.out.println("withdraw ###: withdraw the funds");
 
@@ -25,12 +27,16 @@ public class BankAccount {
             System.out.print("Enter command: ");
             command = input.nextLine().trim().split(" ", 2);
             switch (command[0]){
+                case "balance":
+                    a1.getNameBalance();
                 case "deposit":
                     a1.deposit(Double. parseDouble(command[1]));
                     break;
                 case "withdraw":
                     a1.withdraw(Double. parseDouble(command[1]));
                     break;
+                case "info":
+                    a1.printInfo();
             }
         }
     }
@@ -68,6 +74,11 @@ class Account{
             this.balance -= funds;
             System.out.println("withdraw succeed");
         }
+        System.out.println("Balance: " + this.balance);
+    }
+
+    public void getNameBalance(){
+        System.out.println("Name: " + this.name);
         System.out.println("Balance: " + this.balance);
     }
 
