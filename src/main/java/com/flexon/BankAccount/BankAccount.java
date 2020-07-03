@@ -15,11 +15,12 @@ public class BankAccount {
         a1.printInfo();
 //        a1.withdraw(10000);
 //        a1.withdraw(500);
+        System.out.println("Menu:");
         System.out.println("exit: exit the program");
         System.out.println("balance: show name and balance");
         System.out.println("show: show account information");
-        System.out.println("deposit ###: deposit the funds");
-        System.out.println("withdraw ###: withdraw the funds");
+        System.out.println("deposit ###: deposit the funds, funds need to > than 0");
+        System.out.println("withdraw ###: withdraw the funds, balance cannot < than 0");
 
         Scanner input = new Scanner(System.in);
         String[] command = new String[]{"", ""};
@@ -37,6 +38,8 @@ public class BankAccount {
                     break;
                 case "info":
                     a1.printInfo();
+                default :
+                    System.out.println("Invalid command");
             }
         }
     }
@@ -57,7 +60,7 @@ class Account{
     }
 
     public void deposit(double funds){
-        if (funds >= 0){
+        if (funds > 0){
             this.balance += funds;
             System.out.println("deposit succeed");
         }else{
