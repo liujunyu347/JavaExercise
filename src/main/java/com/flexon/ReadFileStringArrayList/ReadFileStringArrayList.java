@@ -2,6 +2,7 @@ package com.flexon.ReadFileStringArrayList;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 //1. Write a program to read a file from a location
 //2. Find all the words that appeared more than 5 times and are more than 3 characters in length.
 //3. Populate a arraylist with all those words after reversing the words
@@ -21,6 +22,9 @@ public class ReadFileStringArrayList {
         List<String> res = new ArrayList<>();
         RFSL.getCount(inputFile, counter);
         RFSL.filter(counter, res);
+        res.stream().count();
+//        Pattern p = Pattern.compile("[.’!;?]");
+
         RFSL.printArray(res);
     }
 
@@ -57,6 +61,10 @@ public class ReadFileStringArrayList {
         for(String s : res){
             System.out.println(s);
         }
+    }
+
+    private void reverse(String s){
+        return;
     }
 
 }

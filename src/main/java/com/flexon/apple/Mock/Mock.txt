@@ -1,0 +1,35 @@
+public static void main(String[] args) throws Exception{
+        ExecutorService pool = Executors.newFixedThreadPool(2);
+        fileTest fsbfs = new fileTest();
+        List<String> files1 = new ArrayList<>();
+        List<String> files2 = new ArrayList<>();
+        List<String> fileForMain = new ArrayList<>();
+//        String path = System.getProperty("user.dir");
+
+        CopyOnWriteArrayList<String> list1 = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<String> list2 = new CopyOnWriteArrayList<>();
+
+        files1.add("/Users/pwang/Desktop");
+        files2.add("/Users/pwang/AndroidStudioProjects");
+        files2.add("/Users/pwang/node_modules");
+        List<String> files = new ArrayList<>();
+        files.addAll(files1);
+        files.addAll(files2);
+        Node node = new Node(files);
+        long a = System.currentTimeMillis();
+        node.files.forEach(uri -> fsbfs.bfs(list1, uri, Pattern.compile("Mock")));
+        list1.forEach(name -> System.out.println(name));
+        System.out.println(System.currentTimeMillis() - a);
+
+        long b = System.currentTimeMillis();
+
+        MyThread t0 = new MyThread(list2, files1);
+        MyThread t1 = new MyThread(list2, files2);
+        t0.start();
+        t1.start();
+        t0.join();
+        t1.join();
+
+        list2.forEach(name -> System.out.println(name));
+        System.out.println(System.currentTimeMillis() - b);
+    }
